@@ -1,0 +1,14 @@
+[Unit]
+Description=Informs when servers go down
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/derek/watchdawg/watchdawg.py 
+WorkingDirectory=/home/derek/watchdawg
+Restart=always
+RestartSec=3
+User=root
+
+
+[Install]
+WantedBy=multi-user.target
