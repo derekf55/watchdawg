@@ -61,8 +61,14 @@ class ServerHealth:
                 else:
                     self.needs_notfication[server] = 0
             except Exception as e:
-                print('Server was down when started')
-                print(e)
+                name = self.server_name_dict[server]
+                time_message = datetime.datetime.now().strftime("%A, %B %d, at %I:%M %p")
+                message = f'{name} went down at {time_message}'
+                print(message)
+                if self.needs_notfication[server] == 0:
+                    print('Going to send text')
+                    df.sendText('+17153471797',message)
+                self.needs_notfication[server] = 1
 
             
     def pi_functions(self):
